@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - Taaza</title>
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.png">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="./assets/css/taaza.css">
+  <link rel="stylesheet" href="./assets/css/media_query.css">
+<style>
+  .button {
+    background-image: linear-gradient(to right, #0d5215, green);
+    color: white;
+    width: 100%;
+    font-size: var(--fs-7);
+    text-transform: uppercase;
+    padding: 20px 30px;
+    text-align: center;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .form-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    margin-top: 120px;
+  }
+
+  .profile-container {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .left-section {
+    padding: 20px;
+    flex: 1;
+  }
+  .right-section {
+    padding: 20px;
+    border-left: 2px solid #ccc; /* Vertical separator */
+    flex: 1;
+  }
+  h2 {
+    color: #0a5e10;
+  }
+  .form-field:disabled {
+    background-color: #e9e9ed;
+    color: #666;
+  }
+  .order-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+  }
+
+  .order-item {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      box-sizing: border-box;
+  }
+
+  .order-info {
+      margin: 10px 0;
+  }
+
+  .label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #787878;
+  }
+  
+  .print-bill {
+    display: inline-block;
+    background-color: #0077b5;
+    color: white;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+</style>
+
+  <!-- Access Control Script (Runs before page renders) -->
+  <script>
+    const isLoggedIn = localStorage.getItem('logged_in') === 'true';
+    if (!isLoggedIn) {
+      alert("Please login to access the dashboard!");
+      window.location.href = 'new-login.html';
+    }
+  </script>
+</head>
+
+<body>
+  <!-- main container -->
+  <div class="container">
+
+    <!-- #HEADER -->
+    <header>
+      <nav class="navbar">
+        <div class="navbar-wrapper">
+          <a href="index.html">
+            <img src="./assets/images/logo.png" alt="logo" width="130">
+          </a>
+          <b>
+          <ul class="navbar-nav" id="navbar-links">
+
+            <li>
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+
+            <li>
+              <a href="about.html" class="nav-link">About</a>
+            </li>
+
+            <li>
+              <a href="services.html" class="nav-link">Services</a>
+            </li>
+
+            <li>
+              <a href="menu.html" class="nav-link">Our Menu</a>
+            </li>
+
+            <li>
+              <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+
+          </ul>
+          </b>
+        </div>
+      </nav>
+    </header>
+
+<section class="profile-container" id="home">
+  <!-- Left section starts here -->
+  <div class="left-section">
+    <h2 id="welcome-message">Welcome to Your Profile!</h2>
+    <br>
+    <div>
+        <form id="profileForm" onsubmit="return updateStaticProfile(event);">
+            <label class="label" for="editEmail">Email:</label>
+            <input class="form-field" type="email" id="editEmail" name="editEmail" required disabled>
+            
+            <label class="label" for="editName">Name:</label>
+            <input class="form-field" type="text" id="editName" name="editName" required>
+            
+            <label class="label" for="editGender">Gender:</label>
+            <input class="form-field" type="text" id="editGender" name="editGender" required>
+            
+            <label class="label" for="editState">State:</label>
+            <input class="form-field" type="text" id="editState" name="editState" required>
+            
+            <label class="label" for="editDistrict">District:</label>
+            <input class="form-field" type="text" id="editDistrict" name="editDistrict" required>
+            
+            <label class="label" for="vipStatus">VIP Status:</label>
+            <input class="form-field" type="text" id="vipStatus" name="vipStatus" disabled>
+
+            <button class="button" type="submit">Update Profile</button>
+        </form>
+        <br><br><hr><br><br>
+
+        <!-- Password Reset Form -->
+        <h2>Update your password</h2>
+        <br>
+        <form id="passwordResetForm" onsubmit="return resetStaticPassword(event);">
+            <label class="label" for="oldPassword">Old Password:</label>
+            <input class="form-field" type="password" id="oldPassword" name="oldPassword" required>
+            
+            <label class="label" for="newPassword">New Password:</label>
+            <input class="form-field" type="password" id="newPassword" name="newPassword" required>
+            
+            <label class="label" for="confirmNewPassword">Confirm New Password:</label>
+            <input class="form-field" type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+
+            <button class="button" type="submit">Reset Password</button>
+        </form>
+    </div>
+  </div>
+
+
+  <!-- Right section starts here -->
+  <div class="right-section">
+      <h2 id="login-email-display">You are logged in as </h2>
+      <br>
+      <!-- Display user orders -->
+      <h2>Your Orders History</h2>
+
+      <div class="order-container">
+          <div class='order-item'>
+              <p class='order-id'><strong>Order ID:</strong> 1234</p>
+              <p class='order-info'><strong>Name:</strong> <span class="profile-name-placeholder">User</span></p>
+              <p class='order-info'><strong>Email:</strong> <span class="profile-email-placeholder">user@example.com</span></p>
+              <p class='order-info'><strong>Address:</strong> Kochi, Kerala</p>
+              <p class='order-info'><strong>Item:</strong> Special Biryani</p>
+              <p class='order-info'><strong>Quantity:</strong> 2</p>
+              <p class='order-info'><strong>Total Price:</strong> ₹360</p>
+              <a href='#' class='print-bill' onclick='alert("PDF generation requires dynamic server libraries (FPDF). Bill printing is disabled in this static demo."); return false;'>Print Bill</a>
+          </div>
+      </div>
+      <br>
+      <hr>
+      <br>
+
+      <div class="feedback-container">
+          <h2>Feedback</h2>
+          <form onsubmit="alert('Thank you for your feedback! (Static Demo Mode)'); this.reset(); return false;">
+              <textarea class="form-field" id="feedbackText" name="feedbackText" rows="4" required placeholder="Type your feedback here and submit"></textarea>
+              <button class="button" type="submit">Submit Feedback</button>
+          </form>
+      </div>
+  </div>
+</section>
+<br>
+
+    <!-- #FOOTER -->
+
+    <footer>
+      <div class="footer-wrapper">
+        <a href="#">
+          <img src="./assets/images/logo.png" alt="logo" class="footer-brand" width="150">
+        </a>
+        <div class="social-link">
+
+          <a href="https://twitter.com/Annabel07785340">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a>
+
+          <a href="https://github.com/vijaymahes9080">
+            <ion-icon name="logo-github"></ion-icon>
+          </a>
+
+          <a href="https://www.facebook.com/andro.pool.54/">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+
+          <a href="https://youtu.be/OTQqj3-Zqi8?si=tT2NfC3Sh7p_UaSS">
+            <ion-icon name="logo-youtube"></ion-icon>
+          </a>
+        </div>
+        <p class="copyright">&copy; Copyright 2026 Taaza. All Rights Reserved. (Static Demo by Vijay Mahes)</p>
+      </div>
+    </footer>
+  </div>
+
+  <!--custom js link -->
+  <script src="./assets/js/taaza.js"></script>
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!-- Populate Profile Details and Functions -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const email = localStorage.getItem('username');
+      const userJSON = localStorage.getItem('static_user_' + email);
+      
+      if (userJSON) {
+        const user = JSON.parse(userJSON);
+        
+        // Welcome and login headers
+        document.getElementById('welcome-message').innerText = `Welcome to Your Profile, ${user.name}!`;
+        document.getElementById('login-email-display').innerText = `You are logged in as ${user.email}`;
+        
+        // Forms values
+        document.getElementById('editEmail').value = user.email;
+        document.getElementById('editName').value = user.name;
+        document.getElementById('editGender').value = user.gender || '';
+        document.getElementById('editState').value = user.state || '';
+        document.getElementById('editDistrict').value = user.district || '';
+        
+        const isVip = user.is_vip === true;
+        const vipField = document.getElementById('vipStatus');
+        vipField.value = isVip ? 'You are VIP' : 'Not VIP';
+        vipField.style.color = isVip ? 'green' : '#bf9900';
+
+        // Order history placeholders
+        document.querySelectorAll('.profile-name-placeholder').forEach(span => span.innerText = user.name);
+        document.querySelectorAll('.profile-email-placeholder').forEach(span => span.innerText = user.email);
+      }
+    });
+
+    function updateStaticProfile(event) {
+      event.preventDefault();
+      const email = localStorage.getItem('username');
+      const storedJSON = localStorage.getItem('static_user_' + email);
+      
+      if (storedJSON) {
+        const user = JSON.parse(storedJSON);
+        user.name = document.getElementById('editName').value;
+        user.gender = document.getElementById('editGender').value;
+        user.state = document.getElementById('editState').value;
+        user.district = document.getElementById('editDistrict').value;
+        
+        localStorage.setItem('static_user_' + email, JSON.stringify(user));
+        alert('Profile updated successfully! (Stored in LocalStorage)');
+        
+        // Update header and labels
+        document.getElementById('welcome-message').innerText = `Welcome to Your Profile, ${user.name}!`;
+        document.querySelectorAll('.profile-name-placeholder').forEach(span => span.innerText = user.name);
+      }
+      return false;
+    }
+
+    function resetStaticPassword(event) {
+      event.preventDefault();
+      const email = localStorage.getItem('username');
+      const storedJSON = localStorage.getItem('static_user_' + email);
+      
+      const oldPassword = document.getElementById('oldPassword').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      if (storedJSON) {
+        const user = JSON.parse(storedJSON);
+        if (user.password !== oldPassword) {
+          alert("Incorrect old password!");
+          return false;
+        }
+
+        if (!passwordPattern.test(newPassword)) {
+          alert("Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character.");
+          return false;
+        }
+
+        if (newPassword !== confirmNewPassword) {
+          alert("Passwords do not match!");
+          return false;
+        }
+
+        user.password = newPassword;
+        localStorage.setItem('static_user_' + email, JSON.stringify(user));
+        alert('Password updated successfully!');
+        document.getElementById('passwordResetForm').reset();
+      }
+      return false;
+    }
+  </script>
+
+  <!-- Dynamic Header Links Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const nav = document.getElementById('navbar-links');
+      const isLoggedIn = localStorage.getItem('logged_in') === 'true';
+      if (isLoggedIn) {
+        // Add Dashboard
+        const dashLi = document.createElement('li');
+        dashLi.innerHTML = '<a href="dashboard.html" class="nav-link">Dashboard</a>';
+        nav.appendChild(dashLi);
+        
+        // Add Logout
+        const logoutLi = document.createElement('li');
+        logoutLi.innerHTML = '<a href="#" onclick="logoutStatic(); return false;" class="nav-link">Logout</a>';
+        nav.appendChild(logoutLi);
+      } else {
+        // Add Register/Login
+        const loginLi = document.createElement('li');
+        loginLi.innerHTML = '<a href="new-login.html" class="nav-link">Register/Login</a>';
+        nav.appendChild(loginLi);
+      }
+    });
+    function logoutStatic() {
+      localStorage.removeItem('logged_in');
+      localStorage.removeItem('username');
+      alert('Logged out successfully.');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

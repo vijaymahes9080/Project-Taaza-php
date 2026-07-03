@@ -63,7 +63,7 @@
             <img src="./assets/images/logo.png" alt="logo" width="130">
           </a>
           <b>
-          <ul class="navbar-nav">
+          <ul class="navbar-nav" id="navbar-links">
 
             <li>
               <a href="index.html" class="nav-link">Home</a>
@@ -85,18 +85,40 @@
               <a href="contact.html" class="nav-link">Contact</a>
             </li>
 
-            <li>
-              <a href="#" onclick="alert('Dashboard and user management are dynamic database features and are disabled on this static demo. Host this PHP project locally or on a PHP/MySQL server to use this feature.'); return false;" class="nav-link">Dashboard</a>
-            </li>
-
-            <li>
-              <a href="#" onclick="alert('Registration and Login are dynamic database features and are disabled on this static demo. Host this PHP project locally or on a PHP/MySQL server to use this feature.'); return false;" class="nav-link">Register/Login</a>
-            </li>
           </ul>
           </b>
         </div>
       </nav>
     </header>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const nav = document.getElementById('navbar-links');
+        const isLoggedIn = localStorage.getItem('logged_in') === 'true';
+        if (isLoggedIn) {
+          // Add Dashboard
+          const dashLi = document.createElement('li');
+          dashLi.innerHTML = '<a href="dashboard.html" class="nav-link">Dashboard</a>';
+          nav.appendChild(dashLi);
+          
+          // Add Logout
+          const logoutLi = document.createElement('li');
+          logoutLi.innerHTML = '<a href="#" onclick="logoutStatic(); return false;" class="nav-link">Logout</a>';
+          nav.appendChild(logoutLi);
+        } else {
+          // Add Register/Login
+          const loginLi = document.createElement('li');
+          loginLi.innerHTML = '<a href="new-login.html" class="nav-link">Register/Login</a>';
+          nav.appendChild(loginLi);
+        }
+      });
+      function logoutStatic() {
+        localStorage.removeItem('logged_in');
+        localStorage.removeItem('username');
+        alert('Logged out successfully.');
+        window.location.href = 'index.html';
+      }
+    </script>
 
 <section class="contact-section" id="home">
   <div class="contact-container">
