@@ -1,0 +1,14 @@
+{
+    "name": "vijaymahes/project-taaza",
+    "description": "Taaza is a full website project. It is a responsive restaurant website which provides online services related to a restaurant.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Vijay Mahes",
+            "email": "Vijaypradhap2004@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0"
+    }
+}
