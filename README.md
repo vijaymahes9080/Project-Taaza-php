@@ -20,6 +20,31 @@ Taaza is a full website project. It is a responsive restaurant website which pro
 
 ![Taaza](https://github.com/WH1T3-E4GL3/Project-Taaza/assets/118425907/7d54c3f1-656d-471b-860d-4880cd93e415)
 
+# 📸 Visual Showcase
+
+### 🍽️ Popular Dishes
+
+| Special Biryani | Chicken Al Fahm | Veg Salad |
+| :---: | :---: | :---: |
+| <img src="assets/images/menu1.jpg" width="200" height="150" style="object-fit: cover; border-radius: 8px;"> | <img src="assets/images/menu2.jpg" width="200" height="150" style="object-fit: cover; border-radius: 8px;"> | <img src="assets/images/menu3.jpg" width="200" height="150" style="object-fit: cover; border-radius: 8px;"> |
+| **Ramen** | **Veg Pasta** | **Chappathi** |
+| <img src="assets/images/menu4.jpg" width="200" height="150" style="object-fit: cover; border-radius: 8px;"> | <img src="assets/images/menu5.jpg" width="200" height="150" style="object-fit: cover; border-radius: 8px;"> | <img src="assets/images/menu6.jpg" width="200" height="150" style="object-fit: cover; border-radius: 8px;"> |
+
+### 🛠️ Services Offered
+
+| Online Food Delivery | Table Booking | Event Catering |
+| :---: | :---: | :---: |
+| <img src="assets/images/service1.png" width="180"> | <img src="assets/images/service2.png" width="180"> | <img src="assets/images/service3.png" width="180"> |
+| **Premium Membership** | **Food Donation** | |
+| <img src="assets/images/service4.png" width="180"> | <img src="assets/images/service5.png" width="180"> | |
+
+### 🗺️ Table Booking Blueprints
+
+| Table Seating Layout (Ground Floor) | VIP Seating Blueprint (First Floor) |
+| :---: | :---: |
+| <img src="assets/images/table-book/blue_print.png" width="300"> | <img src="assets/images/table-book/first-floor.png" width="300"> |
+
+
 
 
 This is a web template that I have created and made available for private use. Please note the licensing terms before using this template.
